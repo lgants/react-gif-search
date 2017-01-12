@@ -31,11 +31,11 @@ class Signup extends React.Component {
   };
 
   renderField = ({ input, label, type, meta: { touched, error } }) => (
-    <fieldset className="form-group">
-      <label>{label}</label>
+    <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
+    <label className="control-label">{label}</label>
       <div>
         <input {...input} placeholder={label} className="form-control" type={type} />
-        {touched && error && <span>{error}</span>}
+         {touched && error && <div className="help-block">{error}</div>}
       </div>
     </fieldset>
   );
@@ -49,7 +49,6 @@ class Signup extends React.Component {
             <Field name="email" type="text" component={this.renderField} label="Email" />
             <Field name="password" type="password" component={this.renderField} label="Password" />
             <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
-
             <button action="submit" className="btn btn-primary">Sign up</button>
           </form>
         </div>
