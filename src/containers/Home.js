@@ -15,7 +15,10 @@ class Home extends React.Component {
         <SearchBar onTermChange={this.props.actions.requestGifs} />
         <GifList
           gifs={ this.props.gifs }
-          onGifSelect={ selectedGif => this.props.actions.openModal({selectedGif}) } />
+          onGifSelect={ selectedGif => this.props.actions.openModal({selectedGif}) }
+          onFavoriteSelect={ selectedGif => this.props.actions.favoriteGif({selectedGif}) }
+          onFavoriteDeselect={ selectedGif => this.props.actions.unfavoriteGif({selectedGif}) }
+          isAuthenticated={ this.props.authenticated } />
         <GifModal
           modalIsOpen={ this.props.modalIsOpen }
           selectedGif={ this.props.selectedGif }
@@ -29,6 +32,7 @@ class Home extends React.Component {
 // mapStateToProps passes data to our container from our store. It makes the result of reducers available to our container as props.
 function mapStateToProps(state) {
   return {
+    authenticated: state.auth.authenticated,
     gifs: state.gifs.data,
     modalIsOpen: state.modal.modalIsOpen,
     selectedGif: state.modal.selectedGif
