@@ -14,6 +14,7 @@ import configureStore from './store/configureStore';
 const store = configureStore();
 
 // The <Provider> makes our Redux store available to any connect()() calls within child components. This is how mapStateToProps can access our state.
+//Without the Provider object you would have to explicitly pass the store as a prop to all the components that need it
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
