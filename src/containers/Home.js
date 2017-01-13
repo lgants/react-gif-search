@@ -1,5 +1,4 @@
 import React from 'react';
-import GifsTemp from '../components/GifsTemp';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';

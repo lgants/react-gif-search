@@ -10,12 +10,14 @@ const GifModal = (props) => {
       isOpen={ props.modalIsOpen }
       onRequestClose={ () => props.onRequestClose() }>
       <div className="gif-modal">
-        <img src={ props.selectedGif.images.original.url } />
+        <img src={ props.selectedGif.images.original.url } alt={props.selectedGif.slug} />
         <p>
           <strong>Source:</strong>
           <a href={ props.selectedGif.source }>{ props.selectedGif.source }</a>
         </p>
-        <p><strong>Rating:</strong> { props.selectedGif.rating }</p>
+        <p>
+          <strong>Rating:</strong> { props.selectedGif.rating }
+        </p>
         <button onClick={() => props.onRequestClose()}>close</button>
       </div>
     </Modal>
