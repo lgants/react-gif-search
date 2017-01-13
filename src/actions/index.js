@@ -74,6 +74,26 @@ export function signInUser(credentials) {
   }
 }
 
+export function signOutUser() {
+  browserHistory.push('/');
+
+  return {
+    type: SIGN_OUT_USER
+  }
+}
+
+export function verifyAuth() {
+  return function (dispatch) {
+    Firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        dispatch(authUser());
+      } else {
+        dispatch(signOutUser());
+      }
+    });
+  }
+}
+
 export function authUser() {
   return {
     type: AUTH_USER

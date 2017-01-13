@@ -1,6 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import rootReducer from '../reducers';
+import * as Actions from '../actions';
 
 export default function configureStore(initialState) {
   const store = createStore(
@@ -19,6 +20,10 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextRootReducer);
     });
   }
+
+  // need to call verifyAuth() almost as soon as app boots so to update the state accordingly
+  // Since we're working with the store object directly, we don't need anything fancy like thunks or bindActionCreators to dispatch an object: we can just import it and dispatch it right there
+  store.dispatch(Actions.verifyAuth());
 
   return store;
 }
